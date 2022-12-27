@@ -19,7 +19,7 @@ namespace _3lab_komanda32.Repositories
             return await dbContext.Reservations.Where(el => el.CustomerId == id).ToListAsync();
         }
 
-        public async Task<Reservation>? GetById(long id)
+        public async Task<Reservation?> GetById(long id)
         {
             return await dbContext.Reservations.FirstOrDefaultAsync(el => el.Id == id);
         }
