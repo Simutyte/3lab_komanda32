@@ -27,8 +27,7 @@ namespace _3lab_komanda32.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrRetrieveFromDB);
             }
         }
 
@@ -46,8 +45,7 @@ namespace _3lab_komanda32.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrRetrieveFromDB);
             }
         }
 
@@ -67,8 +65,7 @@ namespace _3lab_komanda32.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new employee record");
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingEmployee);
             }
         }
 
@@ -79,19 +76,18 @@ namespace _3lab_komanda32.Controllers
             try
             {
                 if (id != business.Id)
-                    return BadRequest("Employee ID mismatch");
+                    return BadRequest(Resource.EmploeeIDMisMatch);
 
                 var toUpdate = await businessRepository.GetById(id);
 
                 if (toUpdate == null)
-                    return NotFound($"Employee with Id = {id} not found");
+                    return NotFound(Resource.EmployeeIdNotFound + id);
 
-                return await businessRepository.Update(business);             
+                return await businessRepository.Update(business);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error updating data");
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataUpdate);
             }
         }
 
