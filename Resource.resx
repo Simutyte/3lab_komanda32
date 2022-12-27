@@ -117,19 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EmploeeIDMisMatch" xml:space="preserve">
+  <data name="BusinessIdNotFound" xml:space="preserve">
+    <value>Business not found, Id = </value>
+  </data>
+  <data name="EmployeeIDMisMatch" xml:space="preserve">
     <value>Employee ID mismatch</value>
   </data>
   <data name="EmployeeIdNotFound" xml:space="preserve">
-    <value>Employee not found, id = </value>
+    <value>Employee not found, Id = </value>
   </data>
   <data name="ErrCreatingEmployee" xml:space="preserve">
     <value>Error creating new employee record</value>
+  </data>
+  <data name="ErrCreatingOrder" xml:space="preserve">
+    <value>Error creating new order record</value>
+  </data>
+  <data name="ErrCreatingPayment" xml:space="preserve">
+    <value>Error creating new payment record</value>
+  </data>
+  <data name="ErrCreatingReservation" xml:space="preserve">
+    <value>Error creating new reservation record</value>
+  </data>
+  <data name="ErrCreatingService" xml:space="preserve">
+    <value>Error creating new service record</value>
+  </data>
+  <data name="ErrDataDelete" xml:space="preserve">
+    <value>Error deleting record</value>
   </data>
   <data name="ErrDataUpdate" xml:space="preserve">
     <value>Error updating data</value>
   </data>
   <data name="ErrRetrieveFromDB" xml:space="preserve">
     <value>Error retrieving data from the database</value>
+  </data>
+  <data name="OrderIdMismatch" xml:space="preserve">
+    <value>Order Id mismatch</value>
+  </data>
+  <data name="OrderIdNotFound" xml:space="preserve">
+    <value>Order not found, Id = </value>
+  </data>
+  <data name="PaymentIdMismatch" xml:space="preserve">
+    <value>Payment Id mismatch</value>
+  </data>
+  <data name="PaymentIdNotFound" xml:space="preserve">
+    <value>Payment not found, Id = </value>
+  </data>
+  <data name="ReservationIdMismatch" xml:space="preserve">
+    <value>Reservation Id mismatch</value>
+  </data>
+  <data name="ReservationIdNotFound" xml:space="preserve">
+    <value>Reservation not found, Id = </value>
+  </data>
+  <data name="ServiceIdMismatch" xml:space="preserve">
+    <value>Service Id mistmatch</value>
+  </data>
+  <data name="ServiceIdNotFound" xml:space="preserve">
+    <value>Service not found, Id = </value>
   </data>
 </root>

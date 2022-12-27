@@ -61,16 +61,25 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee ID mismatch.
+        ///   Looks up a localized string similar to Business not found, Id = .
         /// </summary>
-        internal static string EmploeeIDMisMatch {
+        internal static string BusinessIdNotFound {
             get {
-                return ResourceManager.GetString("EmploeeIDMisMatch", resourceCulture);
+                return ResourceManager.GetString("BusinessIdNotFound", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee not found, id = .
+        ///   Looks up a localized string similar to Employee ID mismatch.
+        /// </summary>
+        internal static string EmployeeIDMisMatch {
+            get {
+                return ResourceManager.GetString("EmployeeIDMisMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee not found, Id = .
         /// </summary>
         internal static string EmployeeIdNotFound {
             get {
@@ -84,6 +93,51 @@ namespace _3lab_komanda32 {
         internal static string ErrCreatingEmployee {
             get {
                 return ResourceManager.GetString("ErrCreatingEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating new order record.
+        /// </summary>
+        internal static string ErrCreatingOrder {
+            get {
+                return ResourceManager.GetString("ErrCreatingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating new payment record.
+        /// </summary>
+        internal static string ErrCreatingPayment {
+            get {
+                return ResourceManager.GetString("ErrCreatingPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating new reservation record.
+        /// </summary>
+        internal static string ErrCreatingReservation {
+            get {
+                return ResourceManager.GetString("ErrCreatingReservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating new service record.
+        /// </summary>
+        internal static string ErrCreatingService {
+            get {
+                return ResourceManager.GetString("ErrCreatingService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error deleting record.
+        /// </summary>
+        internal static string ErrDataDelete {
+            get {
+                return ResourceManager.GetString("ErrDataDelete", resourceCulture);
             }
         }
         
@@ -102,6 +156,78 @@ namespace _3lab_komanda32 {
         internal static string ErrRetrieveFromDB {
             get {
                 return ResourceManager.GetString("ErrRetrieveFromDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Id mismatch.
+        /// </summary>
+        internal static string OrderIdMismatch {
+            get {
+                return ResourceManager.GetString("OrderIdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order not found, Id = .
+        /// </summary>
+        internal static string OrderIdNotFound {
+            get {
+                return ResourceManager.GetString("OrderIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Id mismatch.
+        /// </summary>
+        internal static string PaymentIdMismatch {
+            get {
+                return ResourceManager.GetString("PaymentIdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment not found, Id = .
+        /// </summary>
+        internal static string PaymentIdNotFound {
+            get {
+                return ResourceManager.GetString("PaymentIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reservation Id mismatch.
+        /// </summary>
+        internal static string ReservationIdMismatch {
+            get {
+                return ResourceManager.GetString("ReservationIdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reservation not found, Id = .
+        /// </summary>
+        internal static string ReservationIdNotFound {
+            get {
+                return ResourceManager.GetString("ReservationIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service Id mistmatch.
+        /// </summary>
+        internal static string ServiceIdMismatch {
+            get {
+                return ResourceManager.GetString("ServiceIdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service not found, Id = .
+        /// </summary>
+        internal static string ServiceIdNotFound {
+            get {
+                return ResourceManager.GetString("ServiceIdNotFound", resourceCulture);
             }
         }
     }
