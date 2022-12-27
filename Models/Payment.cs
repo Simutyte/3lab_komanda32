@@ -1,4 +1,6 @@
-﻿namespace _3lab_komanda32.Models
+﻿using _3lab_komanda32.Models.Enums;
+
+namespace _3lab_komanda32.Models
 {
     public class Payment
     { 
@@ -14,7 +16,5 @@
         public double LoyaltyDiscount { get; set; }
         public decimal TotalDiscountsApplied { get; set; }
         public PaymentMethods PaymentMethod { get; set; }
-        public enum PaymentStatus { Pending, Completed, Refunded }
-        public enum PaymentMethods { Online, In_person_cash, In_person_credit_debit_card}
     }
 }

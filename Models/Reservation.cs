@@ -1,4 +1,6 @@
-﻿namespace _3lab_komanda32.Models
+﻿using _3lab_komanda32.Models.Enums;
+
+namespace _3lab_komanda32.Models
 {
     public class Reservation
     {
@@ -14,7 +16,5 @@
         public string? Comment { get; set; }
         public ReservationStatus Status { get; set; }
         public Address? DeliveryAddress { get; set; }
-
-        public enum ReservationStatus { placed, in_progress, completed }
     }
 }
