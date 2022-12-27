@@ -135,6 +135,9 @@
   <data name="ErrCreatingPayment" xml:space="preserve">
     <value>Error creating new payment record</value>
   </data>
+  <data name="ErrCreatingProduct" xml:space="preserve">
+    <value>Error creating new product record</value>
+  </data>
   <data name="ErrCreatingReservation" xml:space="preserve">
     <value>Error creating new reservation record</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="PaymentIdNotFound" xml:space="preserve">
     <value>Payment not found, Id = </value>
+  </data>
+  <data name="ProductIdNotFound" xml:space="preserve">
+    <value>Product not found, Id =</value>
   </data>
   <data name="ReservationIdMismatch" xml:space="preserve">
     <value>Reservation Id mismatch</value>

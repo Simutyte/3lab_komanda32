@@ -115,6 +115,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error creating new product record.
+        /// </summary>
+        internal static string ErrCreatingProduct {
+            get {
+                return ResourceManager.GetString("ErrCreatingProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error creating new reservation record.
         /// </summary>
         internal static string ErrCreatingReservation {
@@ -192,6 +201,15 @@ namespace _3lab_komanda32 {
         internal static string PaymentIdNotFound {
             get {
                 return ResourceManager.GetString("PaymentIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product not found, Id =.
+        /// </summary>
+        internal static string ProductIdNotFound {
+            get {
+                return ResourceManager.GetString("ProductIdNotFound", resourceCulture);
             }
         }
         
