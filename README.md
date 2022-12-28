@@ -5,10 +5,10 @@ PSP 3 lab
 
 
 # TODO:
-- [ ] Business
+- [x] Business
   - [x] Business
-  - [ ] Address
-  - [ ] Privilege
+  - [x] Address
+  - [x] Privilege
 - [x] Product
   - [x] Product
   - [x] Discount
