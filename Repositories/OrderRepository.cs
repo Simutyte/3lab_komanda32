@@ -53,5 +53,12 @@ namespace _3lab_komanda32.Repositories
 
             return res.State;
         }
+
+        public async Task<OrderConfirmation> CreateConfirmation(OrderConfirmation order)
+        {
+            var result = await dbContext.OrdersConfirmations.AddAsync(order);
+            await dbContext.SaveChangesAsync();
+            return result.Entity;
+        }
     }
 }

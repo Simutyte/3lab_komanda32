@@ -12,5 +12,6 @@
         //instead of AdditionalInformationFromCustomer
         public string? Comment { get; set; }
         public Address? DeliveryAddress { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

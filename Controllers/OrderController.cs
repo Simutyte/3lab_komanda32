@@ -109,5 +109,27 @@ namespace _3lab_komanda32.Controllers
 
             return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
         }
+
+        //TODO: pas juos parametras Id yra privalomas, bet neaisku, kur ji naudot - request body pats turi OrderId
+        //Palikau, nz ka su juo daryt
+        // POST api/<OrderController>/{id}/confirm
+        [Route("/api/[controller]/{id}/confirm")]
+        [HttpPost]
+        public async Task<ActionResult<Order>> PostConfirm(int id, [FromBody] OrderConfirmation orderConfirmation)
+        {
+            try
+            {
+                if (orderConfirmation == null)
+                    return BadRequest();
+
+                var created = await orderRepository.CreateConfirmation(orderConfirmation);
+
+                return CreatedAtAction(nameof(orderConfirmation), new { id = created.Id }, created);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingOrderConfirm);
+            }
+        }
     }
 }
