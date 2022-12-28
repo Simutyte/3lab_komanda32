@@ -97,6 +97,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discount can not be less than 0 or more than 1.
+        /// </summary>
+        internal static string DiscountIntervalErr {
+            get {
+                return ResourceManager.GetString("DiscountIntervalErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee ID mismatch.
         /// </summary>
         internal static string EmployeeIDMisMatch {
@@ -111,6 +120,15 @@ namespace _3lab_komanda32 {
         internal static string EmployeeIdNotFound {
             get {
                 return ResourceManager.GetString("EmployeeIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error adding Product to existing Order.
+        /// </summary>
+        internal static string ErrAddingProduct {
+            get {
+                return ResourceManager.GetString("ErrAddingProduct", resourceCulture);
             }
         }
         
@@ -259,11 +277,29 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Id mismatch.
+        /// </summary>
+        internal static string ProductidMismatch {
+            get {
+                return ResourceManager.GetString("ProductidMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product not found, Id =.
         /// </summary>
         internal static string ProductIdNotFound {
             get {
                 return ResourceManager.GetString("ProductIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product or Order not found.
+        /// </summary>
+        internal static string ProductOrderIdNotFound {
+            get {
+                return ResourceManager.GetString("ProductOrderIdNotFound", resourceCulture);
             }
         }
         
