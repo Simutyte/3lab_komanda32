@@ -36,9 +36,6 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        //TODO: cia kazkoks bsk gaidys pas juos - nes jei duodi CustomerId, tai gauni list'a reservations,
-        //tai kaip zinot, kuri reikia pakeist?
-        //As dabar padariau, kad paduodi reservationId, o ne CustomerId
         // Patch api/<ReservationController>/5
         [HttpPatch("{id}")]
         public async Task<ActionResult<Reservation>> Patch(int id, [FromBody] Reservation reservation)

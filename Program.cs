@@ -1,4 +1,7 @@
-﻿namespace _3lab_komanda32
+﻿using _3lab_komanda32.Repositories;
+using Microsoft.EntityFrameworkCore;
+
+namespace _3lab_komanda32
 {
     public class Program
     {
@@ -12,6 +15,18 @@
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<ApiDbContext>(o => o.UseSqlite("Data source = ApiDb.db"));
+
+            //repositories
+            builder.Services.AddScoped<BusinessRepository>();
+            builder.Services.AddScoped<OrderRepository>();
+            builder.Services.AddScoped<PaymentRepository>();
+            builder.Services.AddScoped<ProductRepository>();
+            builder.Services.AddScoped<ReservationRepository>();
+            builder.Services.AddScoped<ServiceRepository>();
+
+
 
             var app = builder.Build();
 

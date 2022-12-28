@@ -61,6 +61,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Business Id mismatch.
+        /// </summary>
+        internal static string BusinessIdMismatch {
+            get {
+                return ResourceManager.GetString("BusinessIdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business not found, Id = .
         /// </summary>
         internal static string BusinessIdNotFound {
@@ -88,6 +97,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error creating new business record.
+        /// </summary>
+        internal static string ErrCreatingBusiness {
+            get {
+                return ResourceManager.GetString("ErrCreatingBusiness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error creating new employee record.
         /// </summary>
         internal static string ErrCreatingEmployee {
@@ -111,6 +129,15 @@ namespace _3lab_komanda32 {
         internal static string ErrCreatingPayment {
             get {
                 return ResourceManager.GetString("ErrCreatingPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating new product record.
+        /// </summary>
+        internal static string ErrCreatingProduct {
+            get {
+                return ResourceManager.GetString("ErrCreatingProduct", resourceCulture);
             }
         }
         
@@ -192,6 +219,15 @@ namespace _3lab_komanda32 {
         internal static string PaymentIdNotFound {
             get {
                 return ResourceManager.GetString("PaymentIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product not found, Id =.
+        /// </summary>
+        internal static string ProductIdNotFound {
+            get {
+                return ResourceManager.GetString("ProductIdNotFound", resourceCulture);
             }
         }
         

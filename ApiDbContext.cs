@@ -5,9 +5,9 @@ namespace _3lab_komanda32
 {
     public class ApiDbContext : DbContext
     {
-        public ApiDbContext(DbContextOptions<ApiDbContext> options)
-        : base(options)
+        public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
+            Database.EnsureCreated();
         }
 
         public DbSet<Business> Businesses { get; set; }
@@ -15,5 +15,6 @@ namespace _3lab_komanda32
         public DbSet<Order> Orders { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

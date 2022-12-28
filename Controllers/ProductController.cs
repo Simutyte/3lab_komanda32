@@ -1,21 +1,20 @@
 ﻿using _3lab_komanda32.Models;
 using _3lab_komanda32.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace _3lab_komanda32.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BusinessController : ControllerBase
+    public class ProductController : ControllerBase
     {
         //visur turėtų būt interface greičiausiai
-        private readonly BusinessRepository businessRepository;
-        public BusinessController(BusinessRepository businessRepository)
+        private readonly ProductRepository productRepository;
+        public ProductController(ProductRepository productRepository)
         {
-            this.businessRepository = businessRepository;
+            this.productRepository = productRepository;
         }
 
         // GET: api/<BusinessController>
@@ -24,7 +23,7 @@ namespace _3lab_komanda32.Controllers
         {
             try
             {
-                return Ok(await businessRepository.GetAll());
+                return Ok(await productRepository.GetAll());
             }
             catch (Exception)
             {
@@ -34,11 +33,11 @@ namespace _3lab_komanda32.Controllers
 
         // GET api/<BusinessController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Business>> Get(int id)
+        public async Task<ActionResult<Product>> Get(int id)
         {
             try
             {
-                var result = await businessRepository.GetById(id);
+                var result = await productRepository.GetById(id);
 
                 if (result == null) return NotFound();
 
@@ -52,39 +51,39 @@ namespace _3lab_komanda32.Controllers
 
         // POST api/<BusinessController>
         [HttpPost]
-        public async Task<ActionResult<Business>> Post([FromBody] Business business)
+        public async Task<ActionResult<Product>> Post([FromBody] Product product)
         {
             try
             {
-                if (business == null)
+                if (product == null)
                     return BadRequest();
 
-                var created = await businessRepository.Create(business);
+                var created = await productRepository.Create(product);
 
-                return CreatedAtAction(nameof(business),
+                return CreatedAtAction(nameof(product),
                     new { id = created.Id }, created);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingBusiness);
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingProduct);
             }
         }
 
         // PUT api/<BusinessController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Business>> Put(int id, [FromBody] Business business)
+        public async Task<ActionResult<Product>> Put(int id, [FromBody] Product product)
         {
             try
             {
-                if (id != business.Id)
-                    return BadRequest(Resource.BusinessIdMismatch);
+                if (id != product.Id)
+                    return BadRequest(Resource.EmployeeIDMisMatch);
 
-                var toUpdate = await businessRepository.GetById(id);
+                var toUpdate = await productRepository.GetById(id);
 
                 if (toUpdate == null)
-                    return NotFound(Resource.BusinessIdNotFound + id);
+                    return NotFound(Resource.EmployeeIdNotFound + id);
 
-                return await businessRepository.Update(business);
+                return await productRepository.Update(product);
             }
             catch (Exception)
             {
@@ -96,11 +95,11 @@ namespace _3lab_komanda32.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var res = await businessRepository.RemoveById(id);
+            var res = await productRepository.RemoveById(id);
 
             if (res == null)
             {
-                return NotFound(Resource.BusinessIdNotFound + id);
+                return NotFound(Resource.ProductIdNotFound + id);
             }
 
             if (res == EntityState.Deleted)

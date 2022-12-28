@@ -17,7 +17,6 @@ namespace _3lab_komanda32.Controllers
             this.paymentRepository = paymentRepository;
         }
 
-        //TODO: pas juos parasyta list of payments, tai cia tipo suprast taip, kad pagal CustomerId, o ne Payment Id reikia Query daryt?
         // GET api/<PaymentController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Payment>> Get(int id)
