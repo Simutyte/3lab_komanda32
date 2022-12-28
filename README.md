@@ -9,17 +9,17 @@ PSP 3 lab
   - [x] Business
   - [ ] Address
   - [ ] Privilege
-- [ ] Product
+- [x] Product
   - [x] Product
-  - [ ] Discount
-  - [ ] Find
-  - [ ] Order
+  - [x] Discount
+  - [x] Find
+  - [x] Order
 - [ ] Service
   - [x] Service
   - [ ] Discount
-- [ ] Order
+- [x] Order
   - [x] Order
-  - [ ] Confirm
+  - [x] Confirm
 - [x] Reservations
 - [x] Payment
 - [ ] Loyalty
