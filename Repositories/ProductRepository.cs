@@ -25,14 +25,14 @@ namespace _3lab_komanda32.Repositories
             return await dbContext.Products.FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<Product?> GetByName(string name)
+        public async Task<IEnumerable<Product>?> GetByName(string name)
         {
-            return await dbContext.Products.FirstOrDefaultAsync(e => e.Name == name);
+            return dbContext.Products.Where(el => el.Name == name);
         }
 
-        public async Task<Product?> GetByCategory(string category)
+        public async Task<IEnumerable<Product>?> GetByCategory(string category)
         {
-            return await dbContext.Products.FirstOrDefaultAsync(e => e.Category == category);
+            return dbContext.Products.Where(el => el.Category == category);
         }
 
         public async Task<Product> Create(Product product)

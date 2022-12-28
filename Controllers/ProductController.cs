@@ -135,7 +135,7 @@ namespace _3lab_komanda32.Controllers
         }
 
         [HttpGet("find/name/{name}")]
-        public async Task<ActionResult<Product>> GetByName(string name)
+        public async Task<ActionResult<IEnumerable<Product>>> GetByName(string name)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace _3lab_komanda32.Controllers
 
                 if (result == null) return NotFound();
 
-                return result;
+                return Ok(result);
             }
             catch (Exception)
             {
@@ -152,7 +152,7 @@ namespace _3lab_komanda32.Controllers
         }
 
         [HttpGet("find/category/{category}")]
-        public async Task<ActionResult<Product>> GetByCategory(string category)
+        public async Task<ActionResult<IEnumerable<Product>>> GetByCategory(string category)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace _3lab_komanda32.Controllers
 
                 if (result == null) return NotFound();
 
-                return result;
+                return Ok(result);
             }
             catch (Exception)
             {
