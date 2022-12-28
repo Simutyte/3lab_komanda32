@@ -61,6 +61,24 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address Id mismatch.
+        /// </summary>
+        internal static string AddressIdMismatch {
+            get {
+                return ResourceManager.GetString("AddressIdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address not found, Id =.
+        /// </summary>
+        internal static string AddressIdNotFound {
+            get {
+                return ResourceManager.GetString("AddressIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business Id mismatch.
         /// </summary>
         internal static string BusinessIdMismatch {
@@ -138,6 +156,15 @@ namespace _3lab_komanda32 {
         internal static string ErrCreatingPayment {
             get {
                 return ResourceManager.GetString("ErrCreatingPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating new privelege record.
+        /// </summary>
+        internal static string ErrCreatingPrivilege {
+            get {
+                return ResourceManager.GetString("ErrCreatingPrivilege", resourceCulture);
             }
         }
         

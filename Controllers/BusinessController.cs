@@ -50,6 +50,72 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
+        // GET api/<BusinessController>/5/Address
+        [HttpGet("{id}/Address")]
+        public async Task<ActionResult<Address>> GetAddress(int id)
+        {
+            try
+            {
+                var result = await businessRepository.GetAddress(id);
+
+                if (result == null) return NotFound();
+
+                return result;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrRetrieveFromDB);
+            }
+        }
+
+        // PUT api/<BusinessController>/5/Address
+        [HttpPut("{id}/Address")]
+        public async Task<ActionResult<Address>> Put(int id, [FromBody] Address address)
+        {
+            try
+            {
+                if (id != address.Id)
+                    return BadRequest(Resource.AddressIdMismatch);
+
+                var toUpdate = await businessRepository.GetAddress(id);
+
+                if (toUpdate == null)
+                    return NotFound(Resource.AddressIdNotFound + id);
+
+                return await businessRepository.UpdateAddress(address);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataUpdate);
+            }
+        }
+
+        // POST api/<BusinessController>/5/ManagePrivileges
+        [HttpPost("{id}/ManagePrivileges")]
+        public async Task<ActionResult<Business>> PostPrivilege(int id, [FromBody] ManagePrivilege managePrivilege)
+        {
+            try
+            {
+                if (managePrivilege == null)
+                    return BadRequest();
+
+                var result = await businessRepository.GetById(id);
+
+                if (result == null) 
+                    return BadRequest();
+
+                var created = await businessRepository.CreatePrivilege(managePrivilege);
+
+                return CreatedAtAction(nameof(managePrivilege),
+                    new { id = created.BusinessId }, created);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingPrivilege);
+            }
+        }
+
+
         // POST api/<BusinessController>
         [HttpPost]
         public async Task<ActionResult<Business>> Post([FromBody] Business business)
@@ -101,6 +167,25 @@ namespace _3lab_komanda32.Controllers
             if (res == null)
             {
                 return NotFound(Resource.BusinessIdNotFound + id);
+            }
+
+            if (res == EntityState.Deleted)
+            {
+                return Ok();
+            }
+
+            return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
+        }
+
+        // DELETE api/<BusinessController>/5/ManagePrivileges
+        [HttpDelete("{id}/ManagePrivileges/{id2}")]
+        public async Task<ActionResult> DeletePrivileges(long id, long id2)
+        {
+            var res = await businessRepository.RemovePrivilegeByIds(id, id2);
+
+            if (res == null)
+            {
+                return NotFound(Resource.BusinessIdNotFound + id + " or " + Resource.EmployeeIdNotFound + id2);
             }
 
             if (res == EntityState.Deleted)
