@@ -61,6 +61,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Business Id mismatch.
+        /// </summary>
+        internal static string BusinessIdMismatch {
+            get {
+                return ResourceManager.GetString("BusinessIdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business not found, Id = .
         /// </summary>
         internal static string BusinessIdNotFound {
@@ -84,6 +93,15 @@ namespace _3lab_komanda32 {
         internal static string EmployeeIdNotFound {
             get {
                 return ResourceManager.GetString("EmployeeIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating new business record.
+        /// </summary>
+        internal static string ErrCreatingBusiness {
+            get {
+                return ResourceManager.GetString("ErrCreatingBusiness", resourceCulture);
             }
         }
         

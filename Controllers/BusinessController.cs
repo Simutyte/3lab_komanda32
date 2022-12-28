@@ -66,7 +66,7 @@ namespace _3lab_komanda32.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingEmployee);
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingBusiness);
             }
         }
 
@@ -77,12 +77,12 @@ namespace _3lab_komanda32.Controllers
             try
             {
                 if (id != business.Id)
-                    return BadRequest(Resource.EmployeeIDMisMatch);
+                    return BadRequest(Resource.BusinessIdMismatch);
 
                 var toUpdate = await businessRepository.GetById(id);
 
                 if (toUpdate == null)
-                    return NotFound(Resource.EmployeeIdNotFound + id);
+                    return NotFound(Resource.BusinessIdNotFound + id);
 
                 return await businessRepository.Update(business);
             }
