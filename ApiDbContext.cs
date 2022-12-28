@@ -17,5 +17,6 @@ namespace _3lab_komanda32
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderConfirmation> OrdersConfirmations { get; set; }
+        public DbSet<ProductDiscount> ProductDiscounts { get; set; }
     }
 }
