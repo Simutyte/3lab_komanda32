@@ -138,6 +138,9 @@
   <data name="ErrCreatingOrder" xml:space="preserve">
     <value>Error creating new order record</value>
   </data>
+  <data name="ErrCreatingOrderConfirm" xml:space="preserve">
+    <value>Error creating new order confirmation record</value>
+  </data>
   <data name="ErrCreatingPayment" xml:space="preserve">
     <value>Error creating new payment record</value>
   </data>

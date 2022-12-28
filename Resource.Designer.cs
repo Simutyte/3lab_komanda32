@@ -124,6 +124,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error creating new order confirmation record.
+        /// </summary>
+        internal static string ErrCreatingOrderConfirm {
+            get {
+                return ResourceManager.GetString("ErrCreatingOrderConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error creating new payment record.
         /// </summary>
         internal static string ErrCreatingPayment {
