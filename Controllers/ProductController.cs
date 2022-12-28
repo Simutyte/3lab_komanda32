@@ -33,7 +33,7 @@ namespace _3lab_komanda32.Controllers
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> Get(int id)
+        public async Task<ActionResult<Product>> Get(long id)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace _3lab_komanda32.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult<Product?>> Patch(int id, [FromBody] Product product)
+        public async Task<ActionResult<Product?>> Patch(long id, [FromBody] Product product)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Product?>> Delete(int id)
+        public async Task<ActionResult<Product?>> Delete(long id)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace _3lab_komanda32.Controllers
 
         // PUT api/<ProductController>/5
         [HttpPatch("{id}/discount")]
-        public async Task<ActionResult<Product>> PatchDiscount(int id, [FromBody] ProductDiscount discount)
+        public async Task<ActionResult<Product>> PatchDiscount(long id, [FromBody] ProductDiscount discount)
         {
             try
             {
@@ -171,7 +171,7 @@ namespace _3lab_komanda32.Controllers
         }
 
         [HttpPost("Order/add/{id}")]
-        public async Task<ActionResult<Product>> PostAddProductToOrder(int id, [FromBody] Product product)
+        public async Task<ActionResult<Product>> PostAddProductToOrder(long id, [FromBody] Product product)
         {
             try
             {
@@ -194,7 +194,7 @@ namespace _3lab_komanda32.Controllers
 
         //cia sjp reikia pagal api grazint product, bet labai nelogiska
         [HttpDelete("Order/remove/{id}")]
-        public async Task<ActionResult<Order>> RemoveProductFromOrder(int id, [FromBody] Product product)
+        public async Task<ActionResult<Order>> RemoveProductFromOrder(long id, [FromBody] Product product)
         {
             try
             {
@@ -213,7 +213,7 @@ namespace _3lab_komanda32.Controllers
         }
 
         [HttpPut("Order/update/{id}")]
-        public async Task<ActionResult<Order>> Put(int id, [FromBody] Product product)
+        public async Task<ActionResult<Order>> Put(long id, [FromBody] Product product)
         {
             try
             {

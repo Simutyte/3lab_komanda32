@@ -70,7 +70,7 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<BusinessController>/5
         [HttpDelete("{customerId}")]
-        public async Task<ActionResult<LoyaltyProgram?>> Delete(int customerId)
+        public async Task<ActionResult<LoyaltyProgram?>> Delete(long customerId)
         {
 
             try

@@ -82,7 +82,7 @@ namespace _3lab_komanda32.Repositories
 
         }
 
-        public async Task<Product?> AddProductToOrder(int id, Product product)
+        public async Task<Product?> AddProductToOrder(long id, Product product)
         {
             var order = await dbContext.Orders.FirstOrDefaultAsync(el => el.Id == id);
 
@@ -95,7 +95,7 @@ namespace _3lab_komanda32.Repositories
             return product;
         }
 
-        public async Task<Order?> RemoveProductFromOrder(int id, Product product)
+        public async Task<Order?> RemoveProductFromOrder(long id, Product product)
         {
             var order = await dbContext.Orders.FirstOrDefaultAsync(el => el.Id == id);
 
@@ -115,7 +115,7 @@ namespace _3lab_komanda32.Repositories
             return order;
         }
 
-        public async Task<Order?> UpdateOrderProduct(int id, Product product)
+        public async Task<Order?> UpdateOrderProduct(long id, Product product)
         {
             var order = await dbContext.Orders.FirstOrDefaultAsync(el => el.Id == id);
 

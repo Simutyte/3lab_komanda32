@@ -19,7 +19,7 @@ namespace _3lab_komanda32.Controllers
 
         // GET api/<PaymentController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Payment>> Get(int id)
+        public async Task<ActionResult<Payment>> Get(long id)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace _3lab_komanda32.Controllers
 
         // PUT api/<PaymentController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Payment>> Put(int id, [FromBody] Payment payment)
+        public async Task<ActionResult<Payment>> Put(long id, [FromBody] Payment payment)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<PaymentController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(long id)
         {
             var res = await paymentRepository.RemoveById(id);
 

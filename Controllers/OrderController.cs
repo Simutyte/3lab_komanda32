@@ -34,7 +34,7 @@ namespace _3lab_komanda32.Controllers
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> Get(int id)
+        public async Task<ActionResult<Order>> Get(long id)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace _3lab_komanda32.Controllers
 
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Order?>> Put(int id, [FromBody] Order order)
+        public async Task<ActionResult<Order?>> Put(long id, [FromBody] Order order)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<BusinessController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Order?>> Delete(int id)
+        public async Task<ActionResult<Order?>> Delete(long id)
         {
             try
             {
@@ -117,7 +117,7 @@ namespace _3lab_komanda32.Controllers
         // POST api/<OrderController>/{id}/confirm
         [Route("/api/[controller]/{id}/confirm")]
         [HttpPost]
-        public async Task<ActionResult<Order>> PostConfirm(int id, [FromBody] OrderConfirmation orderConfirmation)
+        public async Task<ActionResult<Order>> PostConfirm(long id, [FromBody] OrderConfirmation orderConfirmation)
         {
             try
             {

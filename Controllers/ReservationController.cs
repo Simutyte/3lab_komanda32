@@ -20,7 +20,7 @@ namespace _3lab_komanda32.Controllers
 
         // GET api/<ReservationController>/5
         [HttpGet("{customerId}")]
-        public async Task<ActionResult> Get(int customerId)
+        public async Task<ActionResult> Get(long customerId)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace _3lab_komanda32.Controllers
 
         // Patch api/<ReservationController>/5
         [HttpPatch("{id}")]
-        public async Task<ActionResult<Reservation?>> Patch(int id, [FromBody] Reservation reservation)
+        public async Task<ActionResult<Reservation?>> Patch(long id, [FromBody] Reservation reservation)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<ReservationController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Reservation?>> Delete(int id)
+        public async Task<ActionResult<Reservation?>> Delete(long id)
         {
 
             try

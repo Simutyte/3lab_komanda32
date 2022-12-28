@@ -32,7 +32,7 @@ namespace _3lab_komanda32.Controllers
 
         // GET api/<ServiceController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Service>> Get(int id)
+        public async Task<ActionResult<Service>> Get(long id)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace _3lab_komanda32.Controllers
 
         // PUT api/<ServiceController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Service?>> Put(int id, [FromBody] Service service)
+        public async Task<ActionResult<Service?>> Put(long id, [FromBody] Service service)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<ServiceController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Service?>> Delete(int id)
+        public async Task<ActionResult<Service?>> Delete(long id)
         {
 
             try
