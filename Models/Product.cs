@@ -8,8 +8,8 @@
         public string Category { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public double Discount { get; set; }
-        public DateTime? DiscountStart { get; set; }
-        public DateTime? DiscountEnd { get; set; }
+        public DateOnly? DiscountStart { get; set; }
+        public DateOnly? DiscountEnd { get; set; }
         public int Quantity { get; set; }
         public bool Refundable { get; set; }
         public bool DeliveryOption { get; set; }
