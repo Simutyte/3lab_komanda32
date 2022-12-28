@@ -17,7 +17,7 @@ namespace _3lab_komanda32.Controllers
             this.productRepository = productRepository;
         }
 
-        // GET: api/<BusinessController>
+        // GET: api/<ProductController>
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -31,7 +31,7 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // GET api/<BusinessController>/5
+        // GET api/<ProductController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(int id)
         {
@@ -49,7 +49,7 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // POST api/<BusinessController>
+        // POST api/<ProductController>
         [HttpPost]
         public async Task<ActionResult<Product>> Post([FromBody] Product product)
         {
@@ -60,7 +60,7 @@ namespace _3lab_komanda32.Controllers
 
                 var created = await productRepository.Create(product);
 
-                return CreatedAtAction(nameof(product),
+                return CreatedAtAction(nameof(Post),
                     new { id = created.Id }, created);
             }
             catch (Exception)
@@ -70,7 +70,7 @@ namespace _3lab_komanda32.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult<Product>> Patch(int id, [FromBody] Product product)
+        public async Task<ActionResult<Product?>> Patch(int id, [FromBody] Product product)
         {
             try
             {
@@ -90,26 +90,28 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<BusinessController>/5
+        // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<Product?>> Delete(int id)
         {
-            var res = await productRepository.RemoveById(id);
-
-            if (res == null)
+            try
             {
-                return NotFound(Resource.ProductIdNotFound + id);
-            }
+                var res = await productRepository.GetById(id);
 
-            if (res == EntityState.Deleted)
+                if (res == null)
+                {
+                    return NotFound(Resource.ProductIdNotFound + id);
+                }
+
+                return await productRepository.RemoveById(id);
+            }
+            catch (Exception)
             {
-                return Ok();
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
             }
-
-            return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
         }
 
-        // PUT api/<BusinessController>/5
+        // PUT api/<ProductController>/5
         [HttpPatch("{id}/discount")]
         public async Task<ActionResult<Product>> PatchDiscount(int id, [FromBody] ProductDiscount discount)
         {
@@ -135,11 +137,11 @@ namespace _3lab_komanda32.Controllers
         }
 
         [HttpGet("find/name/{name}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetByName(string name)
+        public ActionResult<IEnumerable<Product>> GetByName(string name)
         {
             try
             {
-                var result = await productRepository.GetByName(name);
+                var result = productRepository.GetByName(name);
 
                 if (result == null) return NotFound();
 
@@ -152,11 +154,11 @@ namespace _3lab_komanda32.Controllers
         }
 
         [HttpGet("find/category/{category}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetByCategory(string category)
+        public ActionResult<IEnumerable<Product>> GetByCategory(string category)
         {
             try
             {
-                var result = await productRepository.GetByCategory(category);
+                var result = productRepository.GetByCategory(category);
 
                 if (result == null) return NotFound();
 
@@ -181,7 +183,7 @@ namespace _3lab_komanda32.Controllers
                 if (created == null)
                     return NotFound();
 
-                return CreatedAtAction(nameof(product),
+                return CreatedAtAction(nameof(PostAddProductToOrder),
                     new { id = created.Id }, created);
             }
             catch (Exception)

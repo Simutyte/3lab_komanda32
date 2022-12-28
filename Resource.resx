@@ -147,6 +147,9 @@
   <data name="ErrCreatingEmployee" xml:space="preserve">
     <value>Error creating new employee record</value>
   </data>
+  <data name="ErrCreatingLoyalty" xml:space="preserve">
+    <value>Error creating new loyalty record</value>
+  </data>
   <data name="ErrCreatingOrder" xml:space="preserve">
     <value>Error creating new order record</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="ErrRetrieveFromDB" xml:space="preserve">
     <value>Error retrieving data from the database</value>
+  </data>
+  <data name="LoyaltyIdNotFound" xml:space="preserve">
+    <value>Loyalty not found, Id =</value>
   </data>
   <data name="OrderIdMismatch" xml:space="preserve">
     <value>Order Id mismatch</value>

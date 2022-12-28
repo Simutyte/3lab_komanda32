@@ -59,7 +59,7 @@ namespace _3lab_komanda32.Controllers
 
                 var created = await serviceRepository.Create(service);
 
-                return CreatedAtAction(nameof(service), new { id = created.Id }, created);
+                return CreatedAtAction(nameof(Post), new { id = created.Id }, created);
             }
             catch (Exception)
             {
@@ -69,7 +69,7 @@ namespace _3lab_komanda32.Controllers
 
         // PUT api/<ServiceController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Service>> Put(int id, [FromBody] Service service)
+        public async Task<ActionResult<Service?>> Put(int id, [FromBody] Service service)
         {
             try
             {
@@ -91,8 +91,25 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<ServiceController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<Service?>> Delete(int id)
         {
+
+            try
+            {
+                var res = await serviceRepository.GetById(id);
+
+                if (res == null)
+                {
+                    return NotFound(Resource.ServiceIdNotFound + id);
+                }
+
+                return await serviceRepository.RemoveById(id);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
+            }
+
         }
     }
 }

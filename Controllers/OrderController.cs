@@ -61,7 +61,7 @@ namespace _3lab_komanda32.Controllers
 
                 var created = await orderRepository.Create(order);
 
-                return CreatedAtAction(nameof(order), new { id = created.Id }, created);
+                return CreatedAtAction(nameof(Post), new { id = created.Id }, created);
             }
             catch (Exception)
             {
@@ -71,7 +71,7 @@ namespace _3lab_komanda32.Controllers
 
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Order>> Put(int id, [FromBody] Order order)
+        public async Task<ActionResult<Order?>> Put(int id, [FromBody] Order order)
         {
             try
             {
@@ -93,21 +93,23 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<BusinessController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<Order?>> Delete(int id)
         {
-            var res = await orderRepository.RemoveById(id);
-
-            if (res == null)
+            try
             {
-                return NotFound(Resource.OrderIdNotFound + id);
-            }
+                var res = await orderRepository.GetById(id);
 
-            if (res == EntityState.Deleted)
+                if (res == null)
+                {
+                    return NotFound(Resource.OrderIdNotFound + id);
+                }
+
+                return await orderRepository.RemoveById(id);
+            }
+            catch (Exception)
             {
-                return Ok();
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
             }
-
-            return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
         }
 
         //TODO: pas juos parametras Id yra privalomas, bet neaisku, kur ji naudot - request body pats turi OrderId
@@ -124,7 +126,7 @@ namespace _3lab_komanda32.Controllers
 
                 var created = await orderRepository.CreateConfirmation(orderConfirmation);
 
-                return CreatedAtAction(nameof(orderConfirmation), new { id = created.Id }, created);
+                return CreatedAtAction(nameof(PostConfirm), new { id = created.Id }, created);
             }
             catch (Exception)
             {

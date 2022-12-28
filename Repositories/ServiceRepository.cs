@@ -29,11 +29,33 @@ namespace _3lab_komanda32.Repositories
             return res.Entity;
         }
 
-        public async Task<Service> Update(Service service)
+        public async Task<Service?> Update(Service service)
         {
-            dbContext.Entry(service).State = EntityState.Modified;
-            await dbContext.SaveChangesAsync();
-            return service;
+            var toChange = await dbContext.Services.FirstOrDefaultAsync(e => e.Id == service.Id);
+
+            if (toChange != null)
+            {
+                dbContext.Entry<Service>(toChange).CurrentValues.SetValues(service);
+                await dbContext.SaveChangesAsync();
+                return toChange;
+            }
+            return null;
+        }
+
+        public async Task<Service?> RemoveById(long id)
+        {
+            var obj = await dbContext.Services.FirstOrDefaultAsync(el => el.Id == id);
+
+            if (obj != null)
+            {
+                dbContext.Services.Remove(obj);
+                await dbContext.SaveChangesAsync();
+
+                return obj;
+            }
+
+            return null;
+
         }
     }
 }

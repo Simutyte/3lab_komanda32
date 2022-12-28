@@ -16,7 +16,7 @@ namespace _3lab_komanda32
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<ApiDbContext>(o => o.UseSqlite("Data source = ApiDb.db"));
+            builder.Services.AddDbContext<ApiDbContext>(o => o.UseSqlite("Data source = DB/ApiDb.db"));
 
             //repositories
             builder.Services.AddScoped<BusinessRepository>();
@@ -25,6 +25,7 @@ namespace _3lab_komanda32
             builder.Services.AddScoped<ProductRepository>();
             builder.Services.AddScoped<ReservationRepository>();
             builder.Services.AddScoped<ServiceRepository>();
+            builder.Services.AddScoped<LoyaltyRepository>();
 
 
 

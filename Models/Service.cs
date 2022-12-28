@@ -1,7 +1,10 @@
-﻿namespace _3lab_komanda32.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace _3lab_komanda32.Models
 {
     public class Service
     {
+        [Key]
         public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }

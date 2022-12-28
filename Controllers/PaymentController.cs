@@ -46,7 +46,7 @@ namespace _3lab_komanda32.Controllers
 
                 var created = await paymentRepository.Create(payment);
 
-                return CreatedAtAction(nameof(payment), new { id = created.Id }, created);
+                return CreatedAtAction(nameof(Post), new { id = created.Id }, created);
             }
             catch (Exception)
             {
