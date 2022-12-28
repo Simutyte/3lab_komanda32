@@ -9,22 +9,22 @@ namespace _3lab_komanda32.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BusinessController : ControllerBase
+    public class OrderController : ControllerBase
     {
         //visur turėtų būt interface greičiausiai
-        private readonly BusinessRepository businessRepository;
-        public BusinessController(BusinessRepository businessRepository)
+        private readonly OrderRepository orderRepository;
+        public OrderController(OrderRepository orderRepository)
         {
-            this.businessRepository = businessRepository;
+            this.orderRepository = orderRepository;
         }
 
-        // GET: api/<BusinessController>
+        // GET: api/<OrderController>
         [HttpGet]
         public async Task<ActionResult> Get()
         {
             try
             {
-                return Ok(await businessRepository.GetAll());
+                return Ok(await orderRepository.GetAll());
             }
             catch (Exception)
             {
@@ -32,13 +32,13 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // GET api/<BusinessController>/5
+        // GET api/<OrderController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Business>> Get(int id)
+        public async Task<ActionResult<Order>> Get(int id)
         {
             try
             {
-                var result = await businessRepository.GetById(id);
+                var result = await orderRepository.GetById(id);
 
                 if (result == null) return NotFound();
 
@@ -50,42 +50,40 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        //TODO: cia neturetu buti return Business?
-        // POST api/<BusinessController>
+        // POST api/<OrderController>
         [HttpPost]
-        public async Task<ActionResult<Employee>> Post([FromBody] Business business)
+        public async Task<ActionResult<Order>> Post([FromBody] Order order)
         {
             try
             {
-                if (business == null)
+                if (order == null)
                     return BadRequest();
 
-                var created = await businessRepository.Create(business);
+                var created = await orderRepository.Create(order);
 
-                return CreatedAtAction(nameof(business),
-                    new { id = created.Id }, created);
+                return CreatedAtAction(nameof(order), new { id = created.Id }, created);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingEmployee);
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrCreatingOrder);
             }
         }
 
-        // PUT api/<BusinessController>/5
+        // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Business>> Put(int id, [FromBody] Business business)
+        public async Task<ActionResult<Order>> Put(int id, [FromBody] Order order)
         {
             try
             {
-                if (id != business.Id)
-                    return BadRequest(Resource.EmployeeIDMisMatch);
+                if (id != order.Id)
+                    return BadRequest(Resource.OrderIdMismatch);
 
-                var toUpdate = await businessRepository.GetById(id);
+                var toUpdate = await orderRepository.GetById(id);
 
                 if (toUpdate == null)
-                    return NotFound(Resource.EmployeeIdNotFound + id);
+                    return NotFound(Resource.OrderIdNotFound + id);
 
-                return await businessRepository.Update(business);
+                return await orderRepository.Update(order);
             }
             catch (Exception)
             {
@@ -97,11 +95,11 @@ namespace _3lab_komanda32.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var res = await businessRepository.RemoveById(id);
+            var res = await orderRepository.RemoveById(id);
 
             if (res == null)
             {
-                return NotFound(Resource.BusinessIdNotFound + id);
+                return NotFound(Resource.OrderIdNotFound + id);
             }
 
             if (res == EntityState.Deleted)

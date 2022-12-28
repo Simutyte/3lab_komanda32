@@ -13,7 +13,7 @@ namespace _3lab_komanda32.Repositories
         }
 
         //Basic tasks
-        
+
         public async Task<IEnumerable<Business>> GetAll()
         {
             return await dbContext.Businesses.ToListAsync();
@@ -38,6 +38,20 @@ namespace _3lab_komanda32.Repositories
             return business;
 
         }
-        
+
+        public async Task<EntityState?> RemoveById(long id)
+        {
+            var obj = await dbContext.Businesses.FirstOrDefaultAsync(el => el.Id == id);
+
+            if (obj == null)
+            {
+                return null;
+            }
+
+            var res = dbContext.Businesses.Remove(obj);
+            await dbContext.SaveChangesAsync();
+
+            return res.State;
+        }
     }
 }
