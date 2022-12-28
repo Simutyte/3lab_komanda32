@@ -6,5 +6,7 @@
         public string Name { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public long OwnerId { get; set; }
+
+        public Address? Address { get; set; }
     }
 }
