@@ -31,27 +31,29 @@ namespace _3lab_komanda32.Repositories
             return result.Entity;
         }
 
-        public async Task<Order> Update(Order order)
+        public async Task<Order?> Update(Order order)
         {
-            dbContext.Entry(order).State = EntityState.Modified;
+            var toChange = await dbContext.Orders.FirstOrDefaultAsync(e => e.Id == order.Id);
+
+            if (toChange != null)
+                return null;
+
+            dbContext.Entry<Order>(toChange).CurrentValues.SetValues(order);
             await dbContext.SaveChangesAsync();
-            return order;
+            return toChange;
 
         }
 
-        public async Task<EntityState?> RemoveById(long id)
+        public async Task<Order?> RemoveById(long id)
         {
             var obj = await dbContext.Orders.FirstOrDefaultAsync(el => el.Id == id);
 
             if (obj == null)
-            {
                 return null;
-            }
 
-            var res = dbContext.Orders.Remove(obj);
+            dbContext.Orders.Remove(obj);
             await dbContext.SaveChangesAsync();
-
-            return res.State;
+            return obj;
         }
 
         public async Task<OrderConfirmation> CreateConfirmation(OrderConfirmation order)

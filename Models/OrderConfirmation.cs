@@ -1,9 +1,11 @@
 ﻿using _3lab_komanda32.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace _3lab_komanda32.Models
 {
     public class OrderConfirmation
     {
+        [Key]
         public long Id { get; set; }
         public long OrderId { get; set; }
         public long CustomerId { get; set; }

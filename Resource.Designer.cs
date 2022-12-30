@@ -151,6 +151,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error creating new loyalty record.
+        /// </summary>
+        internal static string ErrCreatingLoyalty {
+            get {
+                return ResourceManager.GetString("ErrCreatingLoyalty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error creating new order record.
         /// </summary>
         internal static string ErrCreatingOrder {
@@ -237,6 +246,15 @@ namespace _3lab_komanda32 {
         internal static string ErrRetrieveFromDB {
             get {
                 return ResourceManager.GetString("ErrRetrieveFromDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loyalty not found, Id =.
+        /// </summary>
+        internal static string LoyaltyIdNotFound {
+            get {
+                return ResourceManager.GetString("LoyaltyIdNotFound", resourceCulture);
             }
         }
         

@@ -25,12 +25,12 @@ namespace _3lab_komanda32.Repositories
             return await dbContext.Products.FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<IEnumerable<Product>?> GetByName(string name)
+        public IEnumerable<Product> GetByName(string name)
         {
-            return dbContext.Products.Where(el => el.Name == name);
+            return  dbContext.Products.Where(el => el.Name == name);
         }
 
-        public async Task<IEnumerable<Product>?> GetByCategory(string category)
+        public IEnumerable<Product> GetByCategory(string category)
         {
             return dbContext.Products.Where(el => el.Category == category);
         }
@@ -42,27 +42,28 @@ namespace _3lab_komanda32.Repositories
             return result.Entity;
         }
 
-        public async Task<Product> Update(Product product)
+        public async Task<Product?> Update(Product product)
         {
-            dbContext.Entry(product).State = EntityState.Modified;
-            await dbContext.SaveChangesAsync();
-            return product;
+            var toChange = await dbContext.Products.FirstOrDefaultAsync(e => e.Id == product.Id);
 
+            if (toChange == null)
+                return null;
+
+            dbContext.Entry<Product>(toChange).CurrentValues.SetValues(product);
+            await dbContext.SaveChangesAsync();
+            return toChange;
         }
 
-        public async Task<EntityState?> RemoveById(long id)
+        public async Task<Product?> RemoveById(long id)
         {
             var obj = await dbContext.Products.FirstOrDefaultAsync(el => el.Id == id);
 
             if (obj == null)
-            {
                 return null;
-            }
 
-            var res = dbContext.Products.Remove(obj);
+            dbContext.Products.Remove(obj);
             await dbContext.SaveChangesAsync();
-
-            return res.State;
+            return obj;
         }
 
         public async Task<Product> UpdateDiscount(ProductDiscount discount, Product product)
@@ -77,7 +78,7 @@ namespace _3lab_komanda32.Repositories
 
         }
 
-        public async Task<Product?> AddProductToOrder(int id, Product product)
+        public async Task<Product?> AddProductToOrder(long id, Product product)
         {
             var order = await dbContext.Orders.FirstOrDefaultAsync(el => el.Id == id);
 
@@ -90,7 +91,7 @@ namespace _3lab_komanda32.Repositories
             return product;
         }
 
-        public async Task<Order?> RemoveProductFromOrder(int id, Product product)
+        public async Task<Order?> RemoveProductFromOrder(long id, Product product)
         {
             var order = await dbContext.Orders.FirstOrDefaultAsync(el => el.Id == id);
 
@@ -103,14 +104,12 @@ namespace _3lab_komanda32.Repositories
                 return null;
 
             order.Products.Remove(prod);
-
-            dbContext.Entry(order).State = EntityState.Modified;
             await dbContext.SaveChangesAsync();
 
             return order;
         }
 
-        public async Task<Order?> UpdateOrderProduct(int id, Product product)
+        public async Task<Order?> UpdateOrderProduct(long id, Product product)
         {
             var order = await dbContext.Orders.FirstOrDefaultAsync(el => el.Id == id);
 

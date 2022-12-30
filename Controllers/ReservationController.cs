@@ -20,7 +20,7 @@ namespace _3lab_komanda32.Controllers
 
         // GET api/<ReservationController>/5
         [HttpGet("{customerId}")]
-        public async Task<ActionResult> Get(int customerId)
+        public async Task<ActionResult> Get(long customerId)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace _3lab_komanda32.Controllers
 
         // Patch api/<ReservationController>/5
         [HttpPatch("{id}")]
-        public async Task<ActionResult<Reservation>> Patch(int id, [FromBody] Reservation reservation)
+        public async Task<ActionResult<Reservation?>> Patch(long id, [FromBody] Reservation reservation)
         {
             try
             {
@@ -60,21 +60,24 @@ namespace _3lab_komanda32.Controllers
 
         // DELETE api/<ReservationController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<Reservation?>> Delete(long id)
         {
-            var res = await reservationRepository.RemoveById(id);
 
-            if (res == null)
+            try
             {
-                return NotFound(Resource.ReservationIdNotFound + id);
-            }
+                var res = await reservationRepository.GetById(id);
 
-            if (res == EntityState.Deleted)
+                if (res == null)
+                {
+                    return NotFound(Resource.ReservationIdNotFound + id);
+                }
+
+                return await reservationRepository.RemoveById(id);
+            }
+            catch (Exception)
             {
-                return Ok();
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
             }
-
-            return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
         }
     }
 }

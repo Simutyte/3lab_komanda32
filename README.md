@@ -5,21 +5,21 @@ PSP 3 lab
 
 
 # TODO:
-- [ ] Business
+- [x] Business
   - [x] Business
-  - [ ] Address
-  - [ ] Privilege
-- [ ] Product
+  - [x] Address
+  - [x] Privilege
+- [x] Product
   - [x] Product
-  - [ ] Discount
-  - [ ] Find
-  - [ ] Order
+  - [x] Discount
+  - [x] Find
+  - [x] Order
 - [ ] Service
   - [x] Service
   - [ ] Discount
-- [ ] Order
+- [x] Order
   - [x] Order
-  - [ ] Confirm
+  - [x] Confirm
 - [x] Reservations
 - [x] Payment
-- [ ] Loyalty
+- [x] Loyalty
