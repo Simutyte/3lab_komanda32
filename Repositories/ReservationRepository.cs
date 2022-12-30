@@ -28,28 +28,24 @@ namespace _3lab_komanda32.Repositories
         {
             var toChange = await dbContext.Reservations.FirstOrDefaultAsync(e => e.Id == reservation.Id);
 
-            if (toChange != null)
-            {
-                dbContext.Entry<Reservation>(toChange).CurrentValues.SetValues(reservation);
-                await dbContext.SaveChangesAsync();
-                return toChange;
-            }
-            return null;
+            if (toChange == null)
+                return null;
+
+            dbContext.Entry<Reservation>(toChange).CurrentValues.SetValues(reservation);
+            await dbContext.SaveChangesAsync();
+            return toChange;
         }
 
         public async Task<Reservation?> RemoveById(long id)
         {
             var obj = await dbContext.Reservations.FirstOrDefaultAsync(el => el.Id == id);
 
-            if (obj != null)
-            {
-                dbContext.Reservations.Remove(obj);
-                await dbContext.SaveChangesAsync();
+            if (obj == null)
+                return null;
 
-                return obj;
-            }
-
-            return null;
+            dbContext.Reservations.Remove(obj);
+            await dbContext.SaveChangesAsync();
+            return obj;
         }
     }
 }

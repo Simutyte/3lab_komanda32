@@ -46,28 +46,24 @@ namespace _3lab_komanda32.Repositories
         {
             var toChange = await dbContext.Products.FirstOrDefaultAsync(e => e.Id == product.Id);
 
-            if (toChange != null)
-            {
-                dbContext.Entry<Product>(toChange).CurrentValues.SetValues(product);
-                await dbContext.SaveChangesAsync();
-                return toChange;
-            }
-            return null;
+            if (toChange == null)
+                return null;
+
+            dbContext.Entry<Product>(toChange).CurrentValues.SetValues(product);
+            await dbContext.SaveChangesAsync();
+            return toChange;
         }
 
         public async Task<Product?> RemoveById(long id)
         {
             var obj = await dbContext.Products.FirstOrDefaultAsync(el => el.Id == id);
 
-            if (obj != null)
-            {
-                dbContext.Products.Remove(obj);
-                await dbContext.SaveChangesAsync();
+            if (obj == null)
+                return null;
 
-                return obj;
-            }
-
-            return null;
+            dbContext.Products.Remove(obj);
+            await dbContext.SaveChangesAsync();
+            return obj;
         }
 
         public async Task<Product> UpdateDiscount(ProductDiscount discount, Product product)
@@ -108,8 +104,6 @@ namespace _3lab_komanda32.Repositories
                 return null;
 
             order.Products.Remove(prod);
-
-            //dbContext.Entry(order).State = EntityState.Modified;
             await dbContext.SaveChangesAsync();
 
             return order;

@@ -36,29 +36,24 @@ namespace _3lab_komanda32.Repositories
             //dbContext.Entry(business).State = EntityState.Modified;
             var toChange = await dbContext.Businesses.FirstOrDefaultAsync(e => e.Id == business.Id);
 
-            if(toChange != null)
-            {
-                dbContext.Entry<Business>(toChange).CurrentValues.SetValues(business);
-                await dbContext.SaveChangesAsync();
-                return toChange;
-            }
-            return null;
+            if(toChange == null)
+                return null;
+
+            dbContext.Entry<Business>(toChange).CurrentValues.SetValues(business);
+            await dbContext.SaveChangesAsync();
+            return toChange;
         }
 
         public async Task<Business?> RemoveById(long id)
         {
             var obj = await dbContext.Businesses.FirstOrDefaultAsync(el => el.Id == id);
 
-            if (obj != null)
-            {
-                dbContext.Businesses.Remove(obj);
-                await dbContext.SaveChangesAsync();
+            if (obj == null)
+                return null;
 
-                return obj;
-            }
-
-            return null;
-
+            dbContext.Businesses.Remove(obj);
+            await dbContext.SaveChangesAsync();
+            return obj;
         }
 
         //addresses
@@ -66,14 +61,12 @@ namespace _3lab_komanda32.Repositories
         {
             var toChange = await dbContext.Addresses.FirstOrDefaultAsync(e => e.Id == address.Id);
 
-            if (toChange != null)
-            {
-                dbContext.Entry<Address>(toChange).CurrentValues.SetValues(address);
-                await dbContext.SaveChangesAsync();
-                return toChange;
-            }
-            return null;
+            if (toChange == null)
+                 return null;
 
+            dbContext.Entry<Address>(toChange).CurrentValues.SetValues(address);
+            await dbContext.SaveChangesAsync();
+            return toChange;
         }
 
         public async Task<Address?> GetAddress(long id)
@@ -95,13 +88,10 @@ namespace _3lab_komanda32.Repositories
             var obj = await dbContext.Privileges.FirstOrDefaultAsync(el => el.BusinessId == id && el.EmployeeId == id2);
 
             if (obj == null)
-            {
                 return null;
-            }
 
             dbContext.Privileges.Remove(obj);
             await dbContext.SaveChangesAsync();
-
             return obj;
         }
 

@@ -38,16 +38,12 @@ namespace _3lab_komanda32.Repositories
         {
             var obj = await dbContext.Loyalties.FirstOrDefaultAsync(el => el.CustomerId == id);
 
-            if (obj != null)
-            {
-                dbContext.Loyalties.Remove(obj);
-                await dbContext.SaveChangesAsync();
+            if (obj == null)
+                 return null;
 
-                return obj;
-            }
-
-            return null;
-
+            dbContext.Loyalties.Remove(obj);
+            await dbContext.SaveChangesAsync();
+            return obj;
         }
     }
 }

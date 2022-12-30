@@ -10,11 +10,7 @@ namespace _3lab_komanda32.Models
         public string PhoneNumber { get; set; } = string.Empty;
         public long OwnerId { get; set; }
 
-        public Address Address { get; set; }
+        public Address Address { get; set; } = new();
 
-        public Business() 
-        { 
-            Address = new Address();
-        }
     }
 }

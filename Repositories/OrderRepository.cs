@@ -36,12 +36,11 @@ namespace _3lab_komanda32.Repositories
             var toChange = await dbContext.Orders.FirstOrDefaultAsync(e => e.Id == order.Id);
 
             if (toChange != null)
-            {
-                dbContext.Entry<Order>(toChange).CurrentValues.SetValues(order);
-                await dbContext.SaveChangesAsync();
-                return toChange;
-            }
-            return null;
+                return null;
+
+            dbContext.Entry<Order>(toChange).CurrentValues.SetValues(order);
+            await dbContext.SaveChangesAsync();
+            return toChange;
 
         }
 
@@ -49,14 +48,12 @@ namespace _3lab_komanda32.Repositories
         {
             var obj = await dbContext.Orders.FirstOrDefaultAsync(el => el.Id == id);
 
-            if (obj != null)
-            {
-                dbContext.Orders.Remove(obj);
-                await dbContext.SaveChangesAsync();
-                return obj;
-            }
+            if (obj == null)
+                return null;
 
-            return null;
+            dbContext.Orders.Remove(obj);
+            await dbContext.SaveChangesAsync();
+            return obj;
         }
 
         public async Task<OrderConfirmation> CreateConfirmation(OrderConfirmation order)
