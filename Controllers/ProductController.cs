@@ -17,7 +17,7 @@ namespace _3lab_komanda32.Controllers
             this.productRepository = productRepository;
         }
 
-        // GET: api/<BusinessController>
+        // GET: api/<ProductController>
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -31,9 +31,9 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // GET api/<BusinessController>/5
+        // GET api/<ProductController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> Get(int id)
+        public async Task<ActionResult<Product>> Get(long id)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // POST api/<BusinessController>
+        // POST api/<ProductController>
         [HttpPost]
         public async Task<ActionResult<Product>> Post([FromBody] Product product)
         {
@@ -60,7 +60,7 @@ namespace _3lab_komanda32.Controllers
 
                 var created = await productRepository.Create(product);
 
-                return CreatedAtAction(nameof(product),
+                return CreatedAtAction(nameof(Post),
                     new { id = created.Id }, created);
             }
             catch (Exception)
@@ -69,9 +69,8 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // PUT api/<BusinessController>/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Product>> Put(int id, [FromBody] Product product)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<Product?>> Patch(long id, [FromBody] Product product)
         {
             try
             {
@@ -91,23 +90,144 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<BusinessController>/5
+        // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<Product?>> Delete(long id)
         {
-            var res = await productRepository.RemoveById(id);
-
-            if (res == null)
+            try
             {
-                return NotFound(Resource.ProductIdNotFound + id);
-            }
+                var res = await productRepository.GetById(id);
 
-            if (res == EntityState.Deleted)
+                if (res == null)
+                {
+                    return NotFound(Resource.ProductIdNotFound + id);
+                }
+
+                return await productRepository.RemoveById(id);
+            }
+            catch (Exception)
             {
-                return Ok();
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
             }
+        }
 
-            return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
+        // PUT api/<ProductController>/5
+        [HttpPatch("{id}/discount")]
+        public async Task<ActionResult<Product>> PatchDiscount(long id, [FromBody] ProductDiscount discount)
+        {
+            try
+            {
+                if (id != discount.Id)
+                    return BadRequest(Resource.ProductidMismatch);
+
+                if (discount.Discount < 0 || discount.Discount > 1)
+                    return BadRequest(Resource.DiscountIntervalErr);
+
+                var toUpdate = await productRepository.GetById(id);
+
+                if (toUpdate == null)
+                    return NotFound(Resource.ProductIdNotFound + id);
+
+                return await productRepository.UpdateDiscount(discount, toUpdate);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataUpdate);
+            }
+        }
+
+        [HttpGet("find/name/{name}")]
+        public ActionResult<IEnumerable<Product>> GetByName(string name)
+        {
+            try
+            {
+                var result = productRepository.GetByName(name);
+
+                if (result == null) return NotFound();
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrRetrieveFromDB);
+            }
+        }
+
+        [HttpGet("find/category/{category}")]
+        public ActionResult<IEnumerable<Product>> GetByCategory(string category)
+        {
+            try
+            {
+                var result = productRepository.GetByCategory(category);
+
+                if (result == null) return NotFound();
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrRetrieveFromDB);
+            }
+        }
+
+        [HttpPost("Order/add/{id}")]
+        public async Task<ActionResult<Product>> PostAddProductToOrder(long id, [FromBody] Product product)
+        {
+            try
+            {
+                if (product == null)
+                    return BadRequest();
+
+                var created = await productRepository.AddProductToOrder(id, product);
+
+                if (created == null)
+                    return NotFound();
+
+                return CreatedAtAction(nameof(PostAddProductToOrder),
+                    new { id = created.Id }, created);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrAddingProduct);
+            }
+        }
+
+        //cia sjp reikia pagal api grazint product, bet labai nelogiska
+        [HttpDelete("Order/remove/{id}")]
+        public async Task<ActionResult<Order>> RemoveProductFromOrder(long id, [FromBody] Product product)
+        {
+            try
+            {
+                var res = await productRepository.RemoveProductFromOrder(id, product);
+
+                if (res == null)
+                    return NotFound(Resource.ProductOrderIdNotFound);
+
+                return Ok(res);
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
+            }
+        }
+
+        [HttpPut("Order/update/{id}")]
+        public async Task<ActionResult<Order>> Put(long id, [FromBody] Product product)
+        {
+            try
+            {
+                var order = await productRepository.UpdateOrderProduct(id, product);
+
+                if (order == null)
+                    return NotFound(Resource.ProductOrderIdNotFound);
+
+                return Ok(order);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataUpdate);
+            }
         }
     }
 }

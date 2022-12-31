@@ -61,6 +61,24 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address Id mismatch.
+        /// </summary>
+        internal static string AddressIdMismatch {
+            get {
+                return ResourceManager.GetString("AddressIdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address not found, Id =.
+        /// </summary>
+        internal static string AddressIdNotFound {
+            get {
+                return ResourceManager.GetString("AddressIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business Id mismatch.
         /// </summary>
         internal static string BusinessIdMismatch {
@@ -75,6 +93,15 @@ namespace _3lab_komanda32 {
         internal static string BusinessIdNotFound {
             get {
                 return ResourceManager.GetString("BusinessIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount can not be less than 0 or more than 1.
+        /// </summary>
+        internal static string DiscountIntervalErr {
+            get {
+                return ResourceManager.GetString("DiscountIntervalErr", resourceCulture);
             }
         }
         
@@ -97,6 +124,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error adding Product to existing Order.
+        /// </summary>
+        internal static string ErrAddingProduct {
+            get {
+                return ResourceManager.GetString("ErrAddingProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error creating new business record.
         /// </summary>
         internal static string ErrCreatingBusiness {
@@ -115,6 +151,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error creating new loyalty record.
+        /// </summary>
+        internal static string ErrCreatingLoyalty {
+            get {
+                return ResourceManager.GetString("ErrCreatingLoyalty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error creating new order record.
         /// </summary>
         internal static string ErrCreatingOrder {
@@ -124,11 +169,29 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error creating new order confirmation record.
+        /// </summary>
+        internal static string ErrCreatingOrderConfirm {
+            get {
+                return ResourceManager.GetString("ErrCreatingOrderConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error creating new payment record.
         /// </summary>
         internal static string ErrCreatingPayment {
             get {
                 return ResourceManager.GetString("ErrCreatingPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating new privelege record.
+        /// </summary>
+        internal static string ErrCreatingPrivilege {
+            get {
+                return ResourceManager.GetString("ErrCreatingPrivilege", resourceCulture);
             }
         }
         
@@ -187,6 +250,15 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loyalty not found, Id =.
+        /// </summary>
+        internal static string LoyaltyIdNotFound {
+            get {
+                return ResourceManager.GetString("LoyaltyIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Id mismatch.
         /// </summary>
         internal static string OrderIdMismatch {
@@ -223,11 +295,29 @@ namespace _3lab_komanda32 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Id mismatch.
+        /// </summary>
+        internal static string ProductidMismatch {
+            get {
+                return ResourceManager.GetString("ProductidMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product not found, Id =.
         /// </summary>
         internal static string ProductIdNotFound {
             get {
                 return ResourceManager.GetString("ProductIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product or Order not found.
+        /// </summary>
+        internal static string ProductOrderIdNotFound {
+            get {
+                return ResourceManager.GetString("ProductOrderIdNotFound", resourceCulture);
             }
         }
         

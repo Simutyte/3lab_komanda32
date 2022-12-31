@@ -36,13 +36,10 @@ namespace _3lab_komanda32.Repositories
             var obj = await dbContext.Payments.FirstOrDefaultAsync(el => el.Id == id);
 
             if (obj == null)
-            {
                 return null;
-            }
 
             var res = dbContext.Payments.Remove(obj);
             await dbContext.SaveChangesAsync();
-
             return res.State;
         }
     }

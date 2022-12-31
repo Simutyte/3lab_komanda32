@@ -22,4 +22,4 @@ PSP 3 lab
   - [x] Confirm
 - [x] Reservations
 - [x] Payment
-- [ ] Loyalty
+- [x] Loyalty
