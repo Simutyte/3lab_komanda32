@@ -18,7 +18,14 @@ namespace _3lab_komanda32.Controllers
             this.reservationRepository = reservationRepository;
         }
 
-        // GET api/<ReservationController>/5
+        /// <summary>
+        /// Gets a specific reservation
+        /// </summary>
+        /// <param name="customerId">Id of customer</param>
+        /// <returns> Reservation by specified customer Id</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{customerId}")]
         public async Task<ActionResult> Get(long customerId)
         {
@@ -36,7 +43,16 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // Patch api/<ReservationController>/5
+        /// <summary>
+        /// Updates a specified reservation
+        /// </summary>
+        /// <param name="id">Id of reservation you want to update</param>
+        /// <param name="reservation">Your new reservation</param>
+        /// <returns> Your updated reservation</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPatch("{id}")]
         public async Task<ActionResult<Reservation?>> Patch(long id, [FromBody] Reservation reservation)
         {
@@ -58,11 +74,17 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<ReservationController>/5
+        /// <summary>
+        /// Deletes a specified reservation
+        /// </summary>
+        /// <param name="id">Id of reservation you want to delete</param>
+        /// <returns> Your deleted reservation</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Reservation?>> Delete(long id)
         {
-
             try
             {
                 var res = await reservationRepository.GetById(id);

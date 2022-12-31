@@ -17,10 +17,13 @@ namespace _3lab_komanda32.Controllers
         {
             this.businessRepository = businessRepository;
         }
-        
-        //business
 
-        // GET: api/<BusinessController>
+        /// <summary>
+        /// Gets all businesses
+        /// </summary>
+        /// <returns> All businesses</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -34,7 +37,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // GET api/<BusinessController>/5
+        /// <summary>
+        /// Gets a specific businesses
+        /// </summary>
+        /// <param name="id">Id of business</param>
+        /// <returns> Business by specified Id</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}")]
         public async Task<ActionResult<Business>> Get(long id)
         {
@@ -52,7 +62,13 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // POST api/<BusinessController>
+        /// <summary>
+        /// Posts a new business object
+        /// </summary>
+        /// <returns> Your created business</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
         public async Task<ActionResult<Business>> Post([FromBody] Business business)
         {
@@ -72,7 +88,16 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // PUT api/<BusinessController>/5
+        /// <summary>
+        /// Updates a specified business
+        /// </summary>
+        /// <param name="id">Id of business you want to update</param>
+        /// <param name="business">Business object you want to update to</param>
+        /// <returns> Your updated business</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut("{id}")]
         public async Task<ActionResult<Business?>> Put(long id, [FromBody] Business business)
         {
@@ -94,7 +119,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<BusinessController>/5
+        /// <summary>
+        /// Deletes a specified business
+        /// </summary>
+        /// <param name="id">Id of business you want to delete</param>
+        /// <returns> Your deleted business</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Business?>> Delete(long id)
         {
@@ -117,8 +149,14 @@ namespace _3lab_komanda32.Controllers
 
         }
 
-        //addresses
-        // GET api/<BusinessController>/5/Address
+        /// <summary>
+        /// Gets an address by Id
+        /// </summary>
+        /// <param name="id">Id of address</param>
+        /// <returns> Address by Id</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}/Address")]
         public async Task<ActionResult<Address>> GetAddress(long id)
         {
@@ -136,7 +174,16 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // PUT api/<BusinessController>/5/Address
+        /// <summary>
+        /// Updates an address by Id
+        /// </summary>
+        /// <param name="id">Id of address</param>
+        /// <param name="address">Address object you want to update to</param>
+        /// <returns> Updated address</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut("{id}/Address")]
         public async Task<ActionResult<Address?>> Put(long id, [FromBody] Address address)
         {
@@ -158,9 +205,16 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        //privileges
-
-        // POST api/<BusinessController>/5/ManagePrivileges
+        /// <summary>
+        /// Posts a privilege
+        /// </summary>
+        /// <param name="id">Id of business</param>
+        /// <param name="managePrivilege">Your new privilege</param>
+        /// <returns> Updated business</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost("{id}/ManagePrivileges")]
         public async Task<ActionResult<Business>> PostPrivilege(long id, [FromBody] ManagePrivilege managePrivilege)
         {
@@ -185,7 +239,15 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<BusinessController>/5/ManagePrivileges
+        /// <summary>
+        /// Deletes a privilege by business and privilege Ids
+        /// </summary>
+        /// <param name="id">Id of business</param>
+        /// <param name="id2">Id of privilege</param>
+        /// <returns> Deleted privilege</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}/ManagePrivileges/{id2}")]
         public async Task<ActionResult<ManagePrivilege?>> DeletePrivileges(long id, long id2)
         {
@@ -203,7 +265,7 @@ namespace _3lab_komanda32.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, Resource.ErrDataDelete);
-            }           
+            }
         }
     }
 }

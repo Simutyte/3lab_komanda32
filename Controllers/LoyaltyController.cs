@@ -18,7 +18,12 @@ namespace _3lab_komanda32.Controllers
             this.loyaltyRepository = loyaltyRepository;
         }
 
-        // GET: api/<BusinessController>
+        /// <summary>
+        /// Gets all loyalties
+        /// </summary>
+        /// <returns> All loyalties</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -32,7 +37,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // GET api/<BusinessController>/5
+        /// <summary>
+        /// Gets a specific loyalty
+        /// </summary>
+        /// <param name="customerId">Id of customer</param>
+        /// <returns> Business by specified customer Id</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{customerId}")]
         public async Task<ActionResult<LoyaltyProgram>> Get(long customerId)
         {
@@ -50,13 +62,23 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // POST api/<BusinessController>
+        /// <summary>
+        /// Posts a new loyalty object
+        /// </summary>
+        /// <param name="customerId">Id of customer for which you want to create a loyalty</param>
+        /// <returns> Your created loyalty</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost("{customerId}")]
         public async Task<ActionResult<LoyaltyProgram>> Post(long customerId)
         {
             try
             {
                 LoyaltyProgram loyalty = new LoyaltyProgram(customerId);
+
+                //TODO: cia neturejo buti taip?
+                //var created = await loyaltyRepository.Create(loyalty);
 
                 var created = await loyaltyRepository.Create(new LoyaltyProgram(customerId));
 
@@ -68,7 +90,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<BusinessController>/5
+        /// <summary>
+        /// Deletes a loyalty by customer id
+        /// </summary>
+        /// <param name="customerId">Id of customer</param>
+        /// <returns> Your deleted loyalty</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{customerId}")]
         public async Task<ActionResult<LoyaltyProgram?>> Delete(long customerId)
         {
