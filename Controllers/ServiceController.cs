@@ -16,7 +16,12 @@ namespace _3lab_komanda32.Controllers
             this.serviceRepository = serviceRepository;
         }
 
-        // GET: api/<ServiceController>
+        /// <summary>
+        /// Gets all services
+        /// </summary>
+        /// <returns> All services</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -30,7 +35,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // GET api/<ServiceController>/5
+        /// <summary>
+        /// Gets a specific service
+        /// </summary>
+        /// <param name="id">Id of service</param>
+        /// <returns> Service by specified Id</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}")]
         public async Task<ActionResult<Service>> Get(long id)
         {
@@ -48,7 +60,13 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // POST api/<ServiceController>
+        /// <summary>
+        /// Posts a new service object
+        /// </summary>
+        /// <returns> Your created service</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
         public async Task<ActionResult<Service>> Post([FromBody] Service service)
         {
@@ -67,7 +85,16 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // PUT api/<ServiceController>/5
+        /// <summary>
+        /// Updates a specified service
+        /// </summary>
+        /// <param name="id">Id of service you want to update</param>
+        /// <param name="service">Your new service</param>
+        /// <returns> Your updated service</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut("{id}")]
         public async Task<ActionResult<Service?>> Put(long id, [FromBody] Service service)
         {
@@ -89,11 +116,17 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<ServiceController>/5
+        /// <summary>
+        /// Deletes a specified service
+        /// </summary>
+        /// <param name="id">Id of service you want to delete</param>
+        /// <returns> Your deleted service</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Service?>> Delete(long id)
         {
-
             try
             {
                 var res = await serviceRepository.GetById(id);

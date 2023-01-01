@@ -18,7 +18,12 @@ namespace _3lab_komanda32.Controllers
             this.orderRepository = orderRepository;
         }
 
-        // GET: api/<OrderController>
+        /// <summary>
+        /// Gets all orders
+        /// </summary>
+        /// <returns> All Orders</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -32,6 +37,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets a specific order
+        /// </summary>
+        /// <param name="id">Id of order</param>
+        /// <returns> Order by specified Id</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> Get(long id)
@@ -50,7 +63,13 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // POST api/<OrderController>
+        /// <summary>
+        /// Posts a new order object
+        /// </summary>
+        /// <returns> Your created order</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
         public async Task<ActionResult<Order>> Post([FromBody] Order order)
         {
@@ -69,7 +88,16 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // PUT api/<OrderController>/5
+        /// <summary>
+        /// Updates a specified order
+        /// </summary>
+        /// <param name="id">id of Order you want to update</param>
+        /// <param name="order">Order you want to update to</param>
+        /// <returns> Your updated order</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut("{id}")]
         public async Task<ActionResult<Order?>> Put(long id, [FromBody] Order order)
         {
@@ -91,7 +119,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<BusinessController>/5
+        /// <summary>
+        /// Deletes a specified order
+        /// </summary>
+        /// <param name="id">Id of order you want to delete</param>
+        /// <returns> Your deleted order</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Order?>> Delete(long id)
         {
@@ -112,9 +147,15 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        //TODO: pas juos parametras Id yra privalomas, bet neaisku, kur ji naudot - request body pats turi OrderId
-        //Palikau, nz ka su juo daryt
-        // POST api/<OrderController>/{id}/confirm
+        /// <summary>
+        /// Posts a new order confirmation
+        /// </summary>
+        /// <param name="id">Id of order you want to confirm</param>
+        /// <param name="orderConfirmation">Your new order confirmation</param>
+        /// <returns> Your confirmed order</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Route("/api/[controller]/{id}/confirm")]
         [HttpPost]
         public async Task<ActionResult<Order>> PostConfirm(long id, [FromBody] OrderConfirmation orderConfirmation)

@@ -17,7 +17,12 @@ namespace _3lab_komanda32.Controllers
             this.productRepository = productRepository;
         }
 
-        // GET: api/<ProductController>
+        /// <summary>
+        /// Gets all Products
+        /// </summary>
+        /// <returns> All Products</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -31,7 +36,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // GET api/<ProductController>/5
+        /// <summary>
+        /// Gets a specific product
+        /// </summary>
+        /// <param name="id">Id of product</param>
+        /// <returns> Product by specified Id</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(long id)
         {
@@ -49,7 +61,13 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // POST api/<ProductController>
+        /// <summary>
+        /// Posts a new product object
+        /// </summary>
+        /// <returns> Your created product</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
         public async Task<ActionResult<Product>> Post([FromBody] Product product)
         {
@@ -69,6 +87,16 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates a specified product
+        /// </summary>
+        /// <param name="id">Id of product you want to update</param>
+        /// <param name="product">Your new product</param>
+        /// <returns> Your updated product</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPatch("{id}")]
         public async Task<ActionResult<Product?>> Patch(long id, [FromBody] Product product)
         {
@@ -90,7 +118,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // DELETE api/<ProductController>/5
+        /// <summary>
+        /// Deletes a specified product
+        /// </summary>
+        /// <param name="id">Id of product you want to delete</param>
+        /// <returns> Your deleted product</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product?>> Delete(long id)
         {
@@ -111,7 +146,16 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        // PUT api/<ProductController>/5
+        /// <summary>
+        /// Updates discount for a specified product
+        /// </summary>
+        /// <param name="id">Id of product whose discount you want to update</param>
+        /// <param name="discount">Your new discount</param>
+        /// <returns> Your updated product</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPatch("{id}/discount")]
         public async Task<ActionResult<Product>> PatchDiscount(long id, [FromBody] ProductDiscount discount)
         {
@@ -136,6 +180,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets list of products by name
+        /// </summary>
+        /// <param name="name">Name of product</param>
+        /// <returns> List of products</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("find/name/{name}")]
         public ActionResult<IEnumerable<Product>> GetByName(string name)
         {
@@ -153,6 +205,14 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets list of products by category
+        /// </summary>
+        /// <param name="category">Category of product</param>
+        /// <returns> List of products</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("find/category/{category}")]
         public ActionResult<IEnumerable<Product>> GetByCategory(string category)
         {
@@ -170,6 +230,15 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
+        /// <summary>
+        /// Adds product to order
+        /// </summary>
+        /// <param name="id">Id of Order</param>
+        /// <param name="product">Your new product</param>
+        /// <returns> Your created product</returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost("Order/add/{id}")]
         public async Task<ActionResult<Product>> PostAddProductToOrder(long id, [FromBody] Product product)
         {
@@ -192,7 +261,15 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
-        //cia sjp reikia pagal api grazint product, bet labai nelogiska
+        /// <summary>
+        /// Removes product from order
+        /// </summary>
+        /// <param name="id">Id of order</param>
+        /// <param name="product">Product you want to remove</param>
+        /// <returns> Updated order</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("Order/remove/{id}")]
         public async Task<ActionResult<Order>> RemoveProductFromOrder(long id, [FromBody] Product product)
         {
@@ -212,6 +289,15 @@ namespace _3lab_komanda32.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates a product in order
+        /// </summary>
+        /// <param name="id">Id of order</param>
+        /// <param name="product">Your new product</param>
+        /// <returns> Updated order</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut("Order/update/{id}")]
         public async Task<ActionResult<Order>> Put(long id, [FromBody] Product product)
         {
